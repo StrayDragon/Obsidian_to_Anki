@@ -178,7 +178,7 @@ abstract class AbstractFile {
         }
         let result_arr: string[] = [result]
         result_arr.push(...heading_strs)
-        return result_arr.join(" > ")
+        return "---\n" + result_arr.join(" > ")
     }
 
     abstract writeIDs(): void
@@ -187,7 +187,7 @@ abstract class AbstractFile {
         this.file = this.file.replace(this.data.EMPTY_REGEXP, "")
     }
 
-    getCreateDecks(): AnkiConnect.AnkiConnectRequest {        
+    getCreateDecks(): AnkiConnect.AnkiConnectRequest {
         let actions: AnkiConnect.AnkiConnectRequest[] = []
         for (let note of this.all_notes_to_add) {
             actions.push(AnkiConnect.createDeck(note.deckName))
