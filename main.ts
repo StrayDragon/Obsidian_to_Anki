@@ -22,24 +22,24 @@ export default class MyPlugin extends Plugin {
 			FOLDER_DECKS: {},
 			FOLDER_TAGS: {},
 			Syntax: {
-				"Begin Note": "START",
-				"End Note": "END",
-				"Begin Inline Note": "STARTI",
-				"End Inline Note": "ENDI",
-				"Target Deck Line": "TARGET DECK",
-				"File Tags Line": "FILE TAGS",
-				"Delete Note Line": "DELETE",
-				"Frozen Fields Line": "FROZEN"
+				"Begin Note": "<!-- OBS2ANKI-START -->",
+				"End Note": "<!-- OBS2ANKI-END -->",
+				"Begin Inline Note": "<!-- OBS2ANKI-STARTI -->",
+				"End Inline Note": "<!-- OBS2ANKI-ENDI -->",
+				"Target Deck Line": "<!-- OBS2ANKI-TARGET-DECK -->",
+				"File Tags Line": "<!-- OBS2ANKI-FILE-TAGS -->",
+				"Delete Note Line": "<!-- OBS2ANKI-DELETE -->",
+				"Frozen Fields Line": "<!-- OBS2ANKI-FROZEN -->"
 			},
 			Defaults: {
 				"Scan Directory": "",
-				"Tag": "Obsidian_to_Anki",
-				"Deck": "Default",
+				"Tag": "Obs2Anki",
+				"Deck": "Ob笔记导出",
 				"Scheduling Interval": 0,
 				"Add File Link": false,
-				"Add Context": false,
+				"Add Context": true,
 				"CurlyCloze": false,
-				"CurlyCloze - Highlights to Clozes": false,
+				"CurlyCloze - Highlights to Clozes": true,
 				"ID Comments": true,
 				"Add Obsidian Tags": false,
 			},
@@ -210,7 +210,7 @@ export default class MyPlugin extends Plugin {
 		} else {
 			manager = new FileManager(this.app, data, this.app.vault.getMarkdownFiles(), this.file_hashes, this.added_media);
 		}
-		
+
 		await manager.initialiseFiles()
 		await manager.requests_1()
 		this.added_media = Array.from(manager.added_media_set)
